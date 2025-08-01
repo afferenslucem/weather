@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WeatherBackend.Services;
 
 namespace WeatherBackend.Controllers;
 
@@ -6,25 +7,20 @@ namespace WeatherBackend.Controllers;
 [Route("[controller]")]
 public class WeatherController : Controller
 {
+    private IWeatherService weatherService;
+
+    public WeatherController(IWeatherService weatherService)
+    {
+        this.weatherService = weatherService;
+    }
+    
     [HttpGet]
     [Route("Forecast")]
-    public IActionResult GetForecast()
+    public async Task<IActionResult> GetForecast()
     {
-        var summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-
-        return Ok(forecast);
+        var data = await weatherService.GetCurrentWeather();
+        
+        return Ok(data);
     }
 }
 

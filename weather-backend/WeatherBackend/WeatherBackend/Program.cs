@@ -1,10 +1,21 @@
+using WeatherBackend;
+using WeatherBackend.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Environment.CurrentDirectory)
+    .AddJsonFile("appsettings.json")
+    .Build();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.Configure<Config>(configuration.GetSection("Config"));
+
+builder.Services.AddScoped<IWeatherService, WeatherService>();
 
 var app = builder.Build();
 
