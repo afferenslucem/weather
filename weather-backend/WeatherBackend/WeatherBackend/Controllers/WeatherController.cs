@@ -15,10 +15,28 @@ public class WeatherController : Controller
     }
     
     [HttpGet]
-    [Route("Forecast")]
-    public async Task<IActionResult> GetForecast()
+    [Route("CurrentWeather")]
+    public async Task<IActionResult> GetCurrentWeather()
     {
         var data = await weatherService.GetCurrentWeather();
+        
+        return Ok(data);
+    }
+    
+    [HttpGet]
+    [Route("Forecast")]
+    public async Task<IActionResult> GetHourlyForecast()
+    {
+        var data = await weatherService.GetForecast();
+        
+        return Ok(data);
+    }
+    
+    [HttpGet]
+    [Route("AirPollution")]
+    public async Task<IActionResult> GetAirPollution()
+    {
+        var data = await weatherService.GetAirPollution();
         
         return Ok(data);
     }

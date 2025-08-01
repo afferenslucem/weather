@@ -7,6 +7,8 @@ namespace WeatherBackend.Services;
 public interface IWeatherService
 {
     Task<object> GetCurrentWeather();
+    Task<object> GetForecast();
+    Task<object> GetAirPollution();
 }
 
 public class WeatherService: IWeatherService
@@ -23,10 +25,55 @@ public class WeatherService: IWeatherService
         var uriBuilder = new UriBuilder("http://api.openweathermap.org/data/2.5/weather");
         var query = HttpUtility.ParseQueryString(string.Empty);
         
+        query.Add("q", "Chelyabinsk,RU");
+        
+        query.Add("units", "metric");
+        query.Add("appid", config.Value.APIKey);
+        
+        uriBuilder.Query = query.ToString();
+        
+        using var client = new HttpClient();
+
+        var uri = uriBuilder.ToString();
+        
+        using var response = await client.GetAsync(uri);
+
+        var data = await response.Content.ReadFromJsonAsync<Object>();
+
+        return data;
+    }
+    
+    public async Task<object> GetForecast()
+    {
+        var uriBuilder = new UriBuilder("http://api.openweathermap.org/data/2.5/forecast");
+        var query = HttpUtility.ParseQueryString(string.Empty);
+        
+        query.Add("q", "Chelyabinsk,RU");
+        
+        query.Add("units", "metric");
+        query.Add("appid", config.Value.APIKey);
+        
+        uriBuilder.Query = query.ToString();
+        
+        using var client = new HttpClient();
+
+        var uri = uriBuilder.ToString();
+        
+        using var response = await client.GetAsync(uri);
+
+        var data = await response.Content.ReadFromJsonAsync<Object>();
+
+        return data;
+    }
+    
+    public async Task<object> GetAirPollution()
+    {
+        var uriBuilder = new UriBuilder("http://api.openweathermap.org/data/2.5/air_pollution");
+        var query = HttpUtility.ParseQueryString(string.Empty);
+        
         query.Add("lat", "55.163516");
         query.Add("lon", "61.492397");
         
-        query.Add("units", "metric");
         query.Add("appid", config.Value.APIKey);
         
         uriBuilder.Query = query.ToString();
