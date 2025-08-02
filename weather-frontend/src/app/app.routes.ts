@@ -3,6 +3,6 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
     {
         path: '',
-        loadComponent: () => import('./components/test/test').then(c => c.Test),
-    },
+        loadComponent: () => import('./pages/current-weather-page/current-weather-page').then(c => c.CurrentWeatherPage),
+    }
 ];

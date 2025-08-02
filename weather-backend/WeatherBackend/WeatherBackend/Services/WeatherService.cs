@@ -1,14 +1,15 @@
 using System.Collections.Specialized;
 using System.Web;
 using Microsoft.Extensions.Options;
+using WeatherBackend.Models;
 
 namespace WeatherBackend.Services;
 
 public interface IWeatherService
 {
-    Task<object> GetCurrentWeather();
-    Task<object> GetForecast();
-    Task<object> GetAirPollution();
+    Task<CurrentWeatherData> GetCurrentWeather();
+    Task<WeatherForecastData> GetForecast();
+    Task<AirPollutionData> GetAirPollution();
 }
 
 public class WeatherService: IWeatherService
@@ -20,7 +21,7 @@ public class WeatherService: IWeatherService
         this.config = config;
     }
     
-    public async Task<object> GetCurrentWeather()
+    public async Task<CurrentWeatherData> GetCurrentWeather()
     {
         var uriBuilder = new UriBuilder("http://api.openweathermap.org/data/2.5/weather");
         var query = HttpUtility.ParseQueryString(string.Empty);
@@ -38,12 +39,12 @@ public class WeatherService: IWeatherService
         
         using var response = await client.GetAsync(uri);
 
-        var data = await response.Content.ReadFromJsonAsync<Object>();
+        var data = await response.Content.ReadFromJsonAsync<CurrentWeatherData>();
 
         return data;
     }
     
-    public async Task<object> GetForecast()
+    public async Task<WeatherForecastData> GetForecast()
     {
         var uriBuilder = new UriBuilder("http://api.openweathermap.org/data/2.5/forecast");
         var query = HttpUtility.ParseQueryString(string.Empty);
@@ -61,12 +62,12 @@ public class WeatherService: IWeatherService
         
         using var response = await client.GetAsync(uri);
 
-        var data = await response.Content.ReadFromJsonAsync<Object>();
+        var data = await response.Content.ReadFromJsonAsync<WeatherForecastData>();
 
         return data;
     }
     
-    public async Task<object> GetAirPollution()
+    public async Task<AirPollutionData> GetAirPollution()
     {
         var uriBuilder = new UriBuilder("http://api.openweathermap.org/data/2.5/air_pollution");
         var query = HttpUtility.ParseQueryString(string.Empty);
@@ -84,7 +85,7 @@ public class WeatherService: IWeatherService
         
         using var response = await client.GetAsync(uri);
 
-        var data = await response.Content.ReadFromJsonAsync<Object>();
+        var data = await response.Content.ReadFromJsonAsync<AirPollutionData>();
 
         return data;
     }

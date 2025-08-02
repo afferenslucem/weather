@@ -17,6 +17,15 @@ builder.Services.Configure<Config>(configuration.GetSection("Config"));
 
 builder.Services.AddScoped<IWeatherService, WeatherService>();
 
+builder.Services.AddCors(options =>
+    options.AddPolicy("default",
+        policy => policy
+            .AllowAnyMethod()
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+    )
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,6 +36,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+
+app.UseCors("default");
+
 app.MapControllers();
 
 app.Run();

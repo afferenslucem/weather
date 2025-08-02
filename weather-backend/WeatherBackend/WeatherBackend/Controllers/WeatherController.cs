@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WeatherBackend.Models;
 using WeatherBackend.Services;
 
 namespace WeatherBackend.Controllers;
@@ -16,6 +17,7 @@ public class WeatherController : Controller
     
     [HttpGet]
     [Route("CurrentWeather")]
+    [ProducesResponseType(typeof(CurrentWeatherData), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetCurrentWeather()
     {
         var data = await weatherService.GetCurrentWeather();
@@ -25,6 +27,7 @@ public class WeatherController : Controller
     
     [HttpGet]
     [Route("Forecast")]
+    [ProducesResponseType(typeof(WeatherForecastData), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetHourlyForecast()
     {
         var data = await weatherService.GetForecast();
@@ -34,15 +37,11 @@ public class WeatherController : Controller
     
     [HttpGet]
     [Route("AirPollution")]
+    [ProducesResponseType(typeof(AirPollutionData), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAirPollution()
     {
         var data = await weatherService.GetAirPollution();
         
         return Ok(data);
     }
-}
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
