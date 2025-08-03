@@ -152,6 +152,7 @@ export class ForecastSystem {
 
 export class ForecastItem {
     @Expose({ name: 'dt' })
+    @Transform(unixToDate)
     public forecastTime: number = null!;
 
     @Type(() => MainWeatherParameters)
@@ -216,8 +217,6 @@ export class City {
 }
 
 export class WeatherForecastData {
-    public message: number = null!;
-
     @Expose({ name: 'cnt' })
     public itemsCount: number = null!;
 
