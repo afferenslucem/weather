@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace WeatherBackend.Models;
+namespace WeatherBackend.Models.OpenWeather;
 
 public class WeatherForecastData
 {

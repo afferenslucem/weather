@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WeatherBackend.Models;
+using WeatherBackend.Models.OpenWeather;
 using WeatherBackend.Services;
 
 namespace WeatherBackend.Controllers;
@@ -8,40 +9,48 @@ namespace WeatherBackend.Controllers;
 [Route("[controller]")]
 public class WeatherController : Controller
 {
-    private IWeatherService weatherService;
+    private IWeatherService _weatherService;
+    private ICityService _cityService;
 
-    public WeatherController(IWeatherService weatherService)
+    public WeatherController(IWeatherService weatherService, ICityService cityService)
     {
-        this.weatherService = weatherService;
+        this._weatherService = weatherService;
+        this._cityService = cityService;
     }
-    
+
     [HttpGet]
-    [Route("CurrentWeather")]
+    [Route("CurrentWeather/{id}")]
     [ProducesResponseType(typeof(CurrentWeatherData), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetCurrentWeather()
+    public async Task<IActionResult> GetCurrentWeather(int id)
     {
-        var data = await weatherService.GetCurrentWeather();
+        var city = await _cityService.GetCity(id);
         
+        var data = await _weatherService.GetCurrentWeather(city);
+
         return Ok(data);
     }
-    
+
     [HttpGet]
-    [Route("Forecast")]
+    [Route("Forecast/{id}")]
     [ProducesResponseType(typeof(WeatherForecastData), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetHourlyForecast()
+    public async Task<IActionResult> GetHourlyForecast(int id)
     {
-        var data = await weatherService.GetForecast();
+        var city = await _cityService.GetCity(id);
         
+        var data = await _weatherService.GetForecast(city);
+
         return Ok(data);
     }
-    
+
     [HttpGet]
-    [Route("AirPollution")]
+    [Route("AirPollution/{id}")]
     [ProducesResponseType(typeof(AirPollutionData), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAirPollution()
+    public async Task<IActionResult> GetAirPollution(int id)
     {
-        var data = await weatherService.GetAirPollution();
+        var city = await _cityService.GetCity(id);
         
+        var data = await _weatherService.GetAirPollution(city);
+
         return Ok(data);
     }
 }

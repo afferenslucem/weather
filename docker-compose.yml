@@ -1,0 +1,12 @@
+version: "3"
+services:
+  database:
+    image: postgres:17-bullseye
+    
+    environment:
+      POSTGRES_PASSWORD: masterkey
+      PGDATA: /var/lib/postgresql/data/weather/
+    ports:
+      - "5432:5432"
+    volumes: 
+      - "./weather-database/:/docker-entrypoint-initdb.d"

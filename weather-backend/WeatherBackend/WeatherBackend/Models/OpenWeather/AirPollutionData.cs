@@ -1,6 +1,6 @@
-namespace WeatherBackend.Models;
-
 using System.Text.Json.Serialization;
+
+namespace WeatherBackend.Models.OpenWeather;
 
 public class AirPollutionData
 {

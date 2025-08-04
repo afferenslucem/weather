@@ -1,5 +1,6 @@
 using WeatherBackend;
 using WeatherBackend.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,14 @@ builder.Services.AddControllers();
 builder.Services.Configure<Config>(configuration.GetSection("Config"));
 
 builder.Services.AddScoped<IWeatherService, WeatherService>();
+builder.Services.AddScoped<ICityService, CityService>();
+
+builder.Services.AddDbContext<WeatherContext>(options =>
+    {
+        options
+            .UseNpgsql(configuration.GetConnectionString("DbConnectionString"));
+    }
+);
 
 builder.Services.AddCors(options =>
     options.AddPolicy("default",

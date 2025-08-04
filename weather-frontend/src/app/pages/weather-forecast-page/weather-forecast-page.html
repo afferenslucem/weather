@@ -1,3 +1,5 @@
+{{forecastData()?.city?.name}}
+
 @for (item of forecastData()?.forecastItems; track item.forecastTime) {
     <div class="date">
         {{item.forecastTime | date: 'dd (ccc) HH:mm'}}

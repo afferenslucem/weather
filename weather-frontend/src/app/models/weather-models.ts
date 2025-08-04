@@ -190,10 +190,8 @@ export class ForecastItem {
 }
 
 export class City {
-    @Expose({ name: 'id' })
     public id: number = null!;
 
-    @Expose({ name: 'name' })
     public name: string = null!;
 
     @Type(() => Coordinates)

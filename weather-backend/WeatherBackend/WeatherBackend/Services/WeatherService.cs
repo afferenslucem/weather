@@ -2,14 +2,15 @@ using System.Collections.Specialized;
 using System.Web;
 using Microsoft.Extensions.Options;
 using WeatherBackend.Models;
+using WeatherBackend.Models.OpenWeather;
 
 namespace WeatherBackend.Services;
 
 public interface IWeatherService
 {
-    Task<CurrentWeatherData> GetCurrentWeather();
-    Task<WeatherForecastData> GetForecast();
-    Task<AirPollutionData> GetAirPollution();
+    Task<CurrentWeatherData> GetCurrentWeather(SupportedCity city);
+    Task<WeatherForecastData> GetForecast(SupportedCity city);
+    Task<AirPollutionData> GetAirPollution(SupportedCity city);
 }
 
 public class WeatherService: IWeatherService
@@ -21,12 +22,12 @@ public class WeatherService: IWeatherService
         this.config = config;
     }
     
-    public async Task<CurrentWeatherData> GetCurrentWeather()
+    public async Task<CurrentWeatherData> GetCurrentWeather(SupportedCity city)
     {
         var uriBuilder = new UriBuilder("http://api.openweathermap.org/data/2.5/weather");
         var query = HttpUtility.ParseQueryString(string.Empty);
         
-        query.Add("q", "Chelyabinsk,RU");
+        query.Add("q", city.ToString());
         
         query.Add("units", "metric");
         query.Add("appid", config.Value.APIKey);
@@ -44,12 +45,12 @@ public class WeatherService: IWeatherService
         return data;
     }
     
-    public async Task<WeatherForecastData> GetForecast()
+    public async Task<WeatherForecastData> GetForecast(SupportedCity city)
     {
         var uriBuilder = new UriBuilder("http://api.openweathermap.org/data/2.5/forecast");
         var query = HttpUtility.ParseQueryString(string.Empty);
         
-        query.Add("q", "Chelyabinsk,RU");
+        query.Add("q", city.ToString());
         
         query.Add("units", "metric");
         query.Add("appid", config.Value.APIKey);
@@ -67,13 +68,13 @@ public class WeatherService: IWeatherService
         return data;
     }
     
-    public async Task<AirPollutionData> GetAirPollution()
+    public async Task<AirPollutionData> GetAirPollution(SupportedCity city)
     {
         var uriBuilder = new UriBuilder("http://api.openweathermap.org/data/2.5/air_pollution");
         var query = HttpUtility.ParseQueryString(string.Empty);
         
-        query.Add("lat", "55.163516");
-        query.Add("lon", "61.492397");
+        query.Add("lat", city.Latitude.ToString());
+        query.Add("lon", city.Longitude.ToString());
         
         query.Add("appid", config.Value.APIKey);
         

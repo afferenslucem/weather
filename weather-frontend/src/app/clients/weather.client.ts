@@ -10,15 +10,16 @@ import { CurrentWeatherData, WeatherForecastData } from '../models/weather-model
 export class WeatherClient {
     private httpClient = inject(HttpClient);
 
-    public getCurrentWeather(): Observable<CurrentWeatherData> {
-        return this.httpClient.get('/weather/currentWeather').pipe(
+    public getCurrentWeather(cityId: number): Observable<CurrentWeatherData> {
+        return this.httpClient.get(`/weather/currentWeather/${cityId}`).pipe(
             map(data => plainToInstance(CurrentWeatherData, data)),
         )
     }
 
-    public getForecast(): Observable<WeatherForecastData> {
-        return this.httpClient.get('/weather/forecast').pipe(
+    public getForecast(cityId: number): Observable<WeatherForecastData> {
+        return this.httpClient.get(`/weather/forecast/${cityId}`).pipe(
             map(data => plainToInstance(WeatherForecastData, data)),
         );
     }
 }
+
