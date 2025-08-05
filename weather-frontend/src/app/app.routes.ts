@@ -3,10 +3,18 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
     {
         path: '',
-        loadComponent: () => import('./pages/current-weather-page/current-weather-page').then(c => c.CurrentWeatherPage),
+        loadComponent: () => import('./app').then(c => c.App),
+
+        children: [
+            {
+                path: 'choose-city',
+                pathMatch: 'full',
+                loadComponent: () => import('./pages/choose-city-page/choose-city-page').then(c => c.ChooseCityPage),
+            },
+            {
+                path: ':cityId',
+                loadComponent: () => import('./pages/current-weather-page/city-page.component').then(c => c.CityPage),
+            },
+        ]
     },
-    {
-        path: 'forecast',
-        loadComponent: () => import('./pages/weather-forecast-page/weather-forecast-page').then(c => c.WeatherForecastPage),
-    }
 ];

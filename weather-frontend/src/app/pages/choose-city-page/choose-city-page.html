@@ -1,0 +1,9 @@
+<div>
+    Выберете город
+</div>
+
+@for (city of cities(); track city.id) {
+    <div class="city" [routerLink]="['/', city.id]">
+        {{ city.name }}
+    </div>
+}
