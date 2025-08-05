@@ -1,0 +1,25 @@
+[appButton] {
+  font-family: inherit;
+  color: inherit;
+  font-size: 1.5rem;
+
+  border-radius: 0.5rem;
+  border: 0.25rem solid #9B4D96;
+  background: linear-gradient(#FFB14E, #FF6F61);
+
+  padding: 0.5rem;
+
+  cursor: pointer;
+
+  image-rendering: pixelated;
+
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: linear-gradient(#FFD580, #FF6F61);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+}

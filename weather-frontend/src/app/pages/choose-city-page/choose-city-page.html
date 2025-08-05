@@ -1,9 +1,13 @@
-<div>
+<h1 class="heading">
     Выберете город
-</div>
+</h1>
 
-@for (city of cities(); track city.id) {
-    <div class="city" [routerLink]="['/', city.id]">
-        {{ city.name }}
-    </div>
-}
+<ul class="city-list">
+    @for (city of cities(); track city.id) {
+        <li>
+            <button appButton class="city-option" [routerLink]="['/', city.id]">
+                {{ city.name }}
+            </button>
+        </li>
+    }
+</ul>

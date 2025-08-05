@@ -2,6 +2,7 @@ import { Component, inject, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { CityClient } from '../../clients/city-client.service';
+import { Button } from '../../directives/button';
 import { SupportedCity } from '../../models/models';
 
 @Component({
@@ -10,6 +11,7 @@ import { SupportedCity } from '../../models/models';
     styleUrl: './choose-city-page.scss',
     imports: [
         RouterLink,
+        Button,
     ],
 })
 export class ChooseCityPage {

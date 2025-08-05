@@ -1,0 +1,39 @@
+:host {
+  display: block;
+
+  block-size: 100%;
+  inline-size: 100%;
+}
+
+.heading {
+  margin-block: 3rem;
+
+  text-align: center;
+
+  text-transform: uppercase;
+}
+
+.city-list {
+  list-style-type: none;
+
+  padding: 0;
+
+  & > li {
+    display: block;
+  }
+
+  & > * + * {
+    margin-top: 0.75rem;
+  }
+}
+
+.city-option {
+  display: block;
+
+  inline-size: 75%;
+  min-inline-size: 12rem;
+
+  margin-inline: auto;
+
+  font-size: 2rem;
+}

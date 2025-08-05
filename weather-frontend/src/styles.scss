@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&family=VT323&display=swap');
+
+@import "styles/typography";
+
+:root {
+  font-family: "VT323", monospace;
+
+  font-size: 16px;
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@import "styles/button";
+
+body {
+  block-size: 100vh;
+
+  background: #42378F;
+  background: linear-gradient(149deg,rgba(66, 55, 143, 1) 0%, rgba(255, 156, 84, 1) 75%, rgba(255, 111, 97, 1) 100%);
+}
