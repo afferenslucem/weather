@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Skeleton } from '../../../../../../directives/skeleton';
 import { ForecastItem as ForecastWeatherData } from '../../../../../../models/weather-models';
 import { TemperaturePipe } from '../../../../../../pipes/temperature-pipe';
 import { WeatherIcon } from '../../../../../../shared/weather-icon/weather-icon.component';
@@ -13,17 +14,22 @@ import { ForecastItem } from '../../models/forecast-item';
         DatePipe,
         TemperaturePipe,
         WeatherIcon,
+        Skeleton,
     ],
 })
 export class ForecastDay {
     @Input({ required: true })
-    public forecastItem: ForecastItem = null!;
+    public forecastItem: ForecastItem | null = null;
 
-    public get day(): ForecastWeatherData {
-        return this.forecastItem.day;
+    public get day(): ForecastWeatherData | null {
+        return this.forecastItem?.day ?? null;
     }
 
-    public get night(): ForecastWeatherData {
-        return this.forecastItem.night;
+    public get night(): ForecastWeatherData | null {
+        return this.forecastItem?.night ?? null;
+    }
+
+    public get iconCode(): string {
+        return this.day?.weatherConditions?.[0]?.iconCode ?? ''
     }
 }

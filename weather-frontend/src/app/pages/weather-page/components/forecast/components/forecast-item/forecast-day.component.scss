@@ -13,9 +13,16 @@
 
 weather-icon {
   block-size: 2rem;
+  inline-size: 2rem;
+}
+
+.week-day {
+  inline-size: 4rem;
 }
 
 .temperature {
+  min-inline-size: 3rem;
+
   &--day {
     color: #FFD580;
   }

@@ -1,13 +1,13 @@
-<div>
-    {{ day.forecastTime | date: 'dd ccc' }}
+<div class="week-day" skeleton type="text" [show]="!day">
+    {{ day?.forecastTime | date: 'dd ccc' }}
 </div>
 
-<weather-icon [code]="day.weatherConditions?.[0]!.iconCode!" />
+<weather-icon skeleton [show]="!iconCode" [code]="iconCode" />
 
-<div class="temperature temperature--day">
-    {{ day.mainParameters.temperature | temperature }}
+<div skeleton type="text" [show]="!day" class="temperature temperature--day">
+    {{ day?.mainParameters?.temperature | temperature }}
 </div>
 
-<div class="temperature temperature--night">
-    {{ night.mainParameters.temperature | temperature }}
+<div skeleton type="text" [show]="!day" class="temperature temperature--night">
+    {{ night?.mainParameters?.temperature | temperature }}
 </div>

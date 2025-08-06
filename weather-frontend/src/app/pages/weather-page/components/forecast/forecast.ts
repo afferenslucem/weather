@@ -3,9 +3,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import _ from 'declarray';
 import { map, Observable } from 'rxjs';
 import { WeatherClient } from '../../../../clients/weather.client';
+import { ForecastItem as ForecastWeatherData } from '../../../../models/weather-models';
 import { ForecastDay } from './components/forecast-item/forecast-day.component';
 import { ForecastItem } from './models/forecast-item';
-import { ForecastItem as ForecastWeatherData } from '../../../../models/weather-models';
 
 @Component({
     selector: 'app-forecast',
@@ -13,6 +13,7 @@ import { ForecastItem as ForecastWeatherData } from '../../../../models/weather-
     styleUrl: './forecast.scss',
     imports: [
         ForecastDay,
+
     ],
 })
 export class Forecast implements OnInit {
