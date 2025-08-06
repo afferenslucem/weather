@@ -5,7 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TemperaturePipe implements PipeTransform {
 
-  transform(value: number): string {
+  transform(value?: number): string {
+    if (value == null) {
+      return ''
+    }
+
     return `${value.toFixed(1)}°C`;
   }
 }

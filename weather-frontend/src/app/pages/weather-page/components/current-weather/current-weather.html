@@ -3,45 +3,51 @@
 @let iconCode = weather?.weatherConditions?.[0]?.iconCode;
 @let wind = weather?.wind;
 
-<div class="city-name" skeleton>
-    @if (weather) {
-        {{ weather.cityName }}
-    }
+<div class="city-name" skeleton type="text" [show]="!weather">
+    {{ weather?.cityName }}
 </div>
 
-@if (main) {
-    <div class="line line--main">
-        <weather-icon [code]="iconCode!" />
+<div class="line line--main">
+    <weather-icon [code]="iconCode!" skeleton [show]="!iconCode"/>
 
-        <h1 class="temperature">
+    <h1 class="temperature" skeleton type="text">
+        @if (main) {
             {{ main.temperature | temperature }}
-        </h1>
+        }
+    </h1>
+</div>
+
+<div class="line">
+    <div class="header" skeleton type="text" [show]="!main">
+        <icon name="termometer"/>
+        Feels like:
     </div>
 
-    <div class="line">
-        <div class="header">
-            <icon name="termometer" /> Feels like:
-        </div>
+    <div class="value" skeleton type="text" [show]="!main">
+        {{ main?.feelsLike | temperature }}
+    </div>
+</div>
 
-        <div class="value"> {{main.feelsLike|temperature}} </div>
+<div class="line">
+    <div class="header" skeleton type="text" [show]="!main">
+        <icon name="drop" /> Humidity:
     </div>
 
-    <div class="line">
-        <div class="header">
-            <icon name="drop" /> Humidity:
-        </div>
+    <div class="value" skeleton type="text" [show]="!main">
+        {{ main?.humidity }}%
+    </div>
+</div>
 
-        <div class="value"> {{main.humidity}}% </div>
+<div class="line">
+    <div class="header" skeleton type="text" [show]="!main">
+        <icon name="barometer" /> Pressure:
     </div>
 
-    <div class="line">
-        <div class="header">
-            <icon name="barometer" /> Pressure:
-        </div>
-
-        <div class="value"> {{main.pressure}} hPa</div>
+    <div class="value" skeleton type="text" [show]="!main">
+        {{ main?.pressure }} hPa
     </div>
-}
+</div>
+
 
 @if (wind) {
     <div class="line">
@@ -49,6 +55,8 @@
             <icon name="wind" /> Wind:
         </div>
 
-        <div class="value"> {{wind.speed}} m/s </div>
+        <div class="value">
+            {{ wind.speed }} m/s
+        </div>
     </div>
 }

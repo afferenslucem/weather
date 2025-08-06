@@ -4,33 +4,45 @@
   }
 }
 
-[skeleton]:empty {
-  opacity: 0.8;
-  --skeleton-bg-color: #5F377D;
+[skeleton]:empty, [skeleton].skeleton--visible, .skeleton.skeleton--visible {
+  position: relative;
 
-  --blur-background: linear-gradient(
-                  130deg,
-                  transparent 0,
-                  transparent 35%,
-                  #18191c99 40%,
-                  #18191ce6 50%,
-                  #18191c99 60%,
-                  transparent 70%,
-                  transparent 100%
-  );
+  &::after {
+    content: ' ';
 
-  --image-skeleton: linear-gradient(var(--skeleton-bg-color), var(--skeleton-bg-color));
+    position: absolute;
+    inset-inline: 0;
+    inset-block: 0;
 
-  background-repeat: no-repeat;
+    --skeleton-bg-color: #5F377D;
 
-  background-image: var(--blur-background),
-  var(--image-skeleton);
+    --blur-background: linear-gradient(
+                    130deg,
+                    transparent 0,
+                    transparent 35%,
+                    #18191c99 40%,
+                    #18191ce6 50%,
+                    #18191c99 60%,
+                    transparent 70%,
+                    transparent 100%
+    );
 
-  background-size:
-          600% 200%;
+    --image-skeleton: linear-gradient(var(--skeleton-bg-color), var(--skeleton-bg-color));
 
-  background-position: 130%,
+    background-repeat: no-repeat;
+
+    background-image: var(--blur-background),
+    var(--image-skeleton);
+
+    background-size: 600% 200%;
+
+    background-position: 130%,
     0 0;
 
-  animation: loading 1.8s ease-in infinite;
+    animation: loading 1.8s ease-in infinite;
+  }
+
+  &[type="text"] {
+    block-size: 1em;
+  }
 }
