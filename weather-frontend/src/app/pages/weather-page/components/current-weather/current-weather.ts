@@ -1,25 +1,32 @@
-import { DatePipe, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { Component, DestroyRef, inject, Input, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { WeatherClient } from '../../clients/weather.client';
-import { CurrentWeatherData } from '../../models/weather-models';
+import { WeatherClient } from '../../../../clients/weather.client';
+import { Skeleton } from '../../../../directives/skeleton';
+import { CurrentWeatherData } from '../../../../models/weather-models';
+import { TemperaturePipe } from '../../../../pipes/temperature-pipe';
+import { Icon } from '../../../../shared/icon/icon';
+import { WeatherIcon } from '../../../../shared/weather-icon/weather-icon.component';
 
 @Component({
-    selector: 'app-current-weather-page',
+    selector: 'app-current-weather',
     imports: [
-        DatePipe,
+        Icon,
+        WeatherIcon,
+        TemperaturePipe,
+        Skeleton,
     ],
-    templateUrl: './city-page.component.html',
-    styleUrl: './city-page.component.scss',
+    templateUrl: './current-weather.html',
+    styleUrl: './current-weather.scss',
 })
-export class CityPage implements OnInit {
+export class CurrentWeather implements OnInit {
     private platformId = inject(PLATFORM_ID);
     private isBrowser = isPlatformBrowser(this.platformId);
 
     private weatherClient = inject(WeatherClient);
     private destroyRef = inject(DestroyRef);
 
-    @Input()
+    @Input({required: true})
     public cityId: number = null!;
 
     public weatherData = signal<CurrentWeatherData | null>(null);

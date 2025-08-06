@@ -30,6 +30,7 @@
     "@angular/router": "^20.1.0",
     "@angular/ssr": "^20.1.4",
     "class-transformer": "^0.5.1",
+    "declarray": "^0.4.0",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"

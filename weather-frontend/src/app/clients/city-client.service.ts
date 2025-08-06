@@ -15,5 +15,11 @@ export class CityClient {
             map(data => plainToInstance(SupportedCity, data)),
         );
     }
+
+    public getById(id: number): Observable<SupportedCity> {
+        return this.httpClient.get<unknown>(`/city/${id}`).pipe(
+            map(data => plainToInstance(SupportedCity, data)),
+        );
+    }
 }
 

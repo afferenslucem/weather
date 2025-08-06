@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+
+  padding: 0.25rem 1rem;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 0.5rem;
+
+  font-size: 1.25rem;
+}
+
+weather-icon {
+  block-size: 2rem;
+}
+
+.temperature {
+  &--day {
+    color: #FFD580;
+  }
+
+  &--night {
+    color: #4DB6E2;
+  }
+}

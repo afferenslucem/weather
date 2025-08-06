@@ -1,0 +1,54 @@
+@let weather = weatherData();
+@let main = weather?.main;
+@let iconCode = weather?.weatherConditions?.[0]?.iconCode;
+@let wind = weather?.wind;
+
+<div class="city-name" skeleton>
+    @if (weather) {
+        {{ weather.cityName }}
+    }
+</div>
+
+@if (main) {
+    <div class="line line--main">
+        <weather-icon [code]="iconCode!" />
+
+        <h1 class="temperature">
+            {{ main.temperature | temperature }}
+        </h1>
+    </div>
+
+    <div class="line">
+        <div class="header">
+            <icon name="termometer" /> Feels like:
+        </div>
+
+        <div class="value"> {{main.feelsLike|temperature}} </div>
+    </div>
+
+    <div class="line">
+        <div class="header">
+            <icon name="drop" /> Humidity:
+        </div>
+
+        <div class="value"> {{main.humidity}}% </div>
+    </div>
+
+    <div class="line">
+        <div class="header">
+            <icon name="barometer" /> Pressure:
+        </div>
+
+        <div class="value"> {{main.pressure}} hPa</div>
+    </div>
+}
+
+@if (wind) {
+    <div class="line">
+        <div class="header">
+            <icon name="wind" /> Wind:
+        </div>
+
+        <div class="value"> {{wind.speed}} m/s </div>
+    </div>
+}

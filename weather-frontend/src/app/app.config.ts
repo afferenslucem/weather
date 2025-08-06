@@ -9,9 +9,9 @@ import { loggingInterceptor } from './interceptors/logging-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideZonelessChangeDetection(),
-    provideRouter(routes, withComponentInputBinding()),
+      provideBrowserGlobalErrorListeners(),
+      provideZonelessChangeDetection(),
+      provideRouter(routes, withComponentInputBinding()),
       provideClientHydration(withEventReplay()),
       provideHttpClient(
           withInterceptors(

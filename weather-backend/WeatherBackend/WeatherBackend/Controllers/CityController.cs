@@ -25,4 +25,14 @@ public class CityController : Controller
         
         return Ok(data);
     }
+
+    [HttpGet]
+    [Route("{id}")]
+    [ProducesResponseType(typeof(SupportedCity), StatusCodes.Status200OK)]
+    public async Task<IActionResult> Get(int id)
+    {
+        var data = await _cityService.GetCity(id);
+        
+        return Ok(data);
+    }
 }

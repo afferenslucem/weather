@@ -1,0 +1,13 @@
+<div>
+    {{ day.forecastTime | date: 'dd ccc' }}
+</div>
+
+<weather-icon [code]="day.weatherConditions?.[0]!.iconCode!" />
+
+<div class="temperature temperature--day">
+    {{ day.mainParameters.temperature | temperature }}
+</div>
+
+<div class="temperature temperature--night">
+    {{ night.mainParameters.temperature | temperature }}
+</div>

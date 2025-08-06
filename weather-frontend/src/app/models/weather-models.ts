@@ -86,10 +86,12 @@ export class SystemData {
     public countryCode: string = null!;
 
     @Expose({ name: 'sunrise' })
-    public sunriseTime: number = null!;
+    @Transform(unixToDate)
+    public sunriseTime: Date = null!;
 
     @Expose({ name: 'sunset' })
-    public sunsetTime: number = null!;
+    @Transform(unixToDate)
+    public sunsetTime: Date = null!;
 
     @Expose({ name: 'pod' })
     public partOfDay?: string;
@@ -153,7 +155,7 @@ export class ForecastSystem {
 export class ForecastItem {
     @Expose({ name: 'dt' })
     @Transform(unixToDate)
-    public forecastTime: number = null!;
+    public forecastTime: Date = null!;
 
     @Type(() => MainWeatherParameters)
     @Expose({ name: 'main' })

@@ -16,10 +16,13 @@
 }
 
 @import "styles/button";
+@import "styles/skeleton";
 
 body {
   block-size: 100vh;
 
+  margin: 0;
+
   background: #42378F;
-  background: linear-gradient(149deg,rgba(66, 55, 143, 1) 0%, rgba(255, 156, 84, 1) 75%, rgba(255, 111, 97, 1) 100%);
+  background: linear-gradient(149deg, rgba(66, 55, 143, 1) 0%, rgba(255, 156, 84, 1) 75%, rgba(255, 111, 97, 1) 100%);
 }
