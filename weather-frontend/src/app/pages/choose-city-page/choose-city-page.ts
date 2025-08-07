@@ -1,6 +1,7 @@
 import { Component, inject, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { CityClient } from '../../clients/city-client.service';
 import { Button } from '../../directives/button';
 import { SupportedCity } from '../../models/models';
@@ -12,6 +13,7 @@ import { SupportedCity } from '../../models/models';
     imports: [
         RouterLink,
         Button,
+        TranslatePipe,
     ],
 })
 export class ChooseCityPage {

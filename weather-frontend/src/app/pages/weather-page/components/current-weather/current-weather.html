@@ -3,8 +3,8 @@
 @let iconCode = weather?.weatherConditions?.[0]?.iconCode;
 @let wind = weather?.wind;
 
-<div class="city-name" skeleton type="text" [show]="!weather">
-    {{ weather?.cityName }}
+<div class="city-name heading" skeleton type="text" [show]="!weather">
+    {{ weather?.cityName | translate }}
 </div>
 
 <div class="line line--main">
@@ -20,7 +20,8 @@
 <div class="line">
     <div class="header" skeleton type="text" [show]="!main">
         <icon name="termometer"/>
-        Feels like:
+
+        {{ 'Feels like' | translate }}:
     </div>
 
     <div class="value" skeleton type="text" [show]="!main">
@@ -30,7 +31,9 @@
 
 <div class="line">
     <div class="header" skeleton type="text" [show]="!main">
-        <icon name="drop" /> Humidity:
+        <icon name="drop" />
+
+        {{ 'Humidity' | translate }}:
     </div>
 
     <div class="value" skeleton type="text" [show]="!main">
@@ -40,11 +43,13 @@
 
 <div class="line">
     <div class="header" skeleton type="text" [show]="!main">
-        <icon name="barometer" /> Pressure:
+        <icon name="barometer" />
+
+        {{ 'Pressure' | translate }}:
     </div>
 
     <div class="value" skeleton type="text" [show]="!main">
-        {{ main?.pressure }} hPa
+        {{ main?.pressure }} {{ 'hPa' | translate }}
     </div>
 </div>
 
@@ -52,11 +57,13 @@
 @if (wind) {
     <div class="line">
         <div class="header">
-            <icon name="wind" /> Wind:
+            <icon name="wind" />
+
+            {{ 'Wind' | translate }}:
         </div>
 
         <div class="value">
-            {{ wind.speed }} m/s
+            {{ wind.speed }} {{ 'm/s' | translate }}
         </div>
     </div>
 }

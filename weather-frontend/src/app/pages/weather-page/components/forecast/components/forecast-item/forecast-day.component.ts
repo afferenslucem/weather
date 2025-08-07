@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Skeleton } from '../../../../../../directives/skeleton';
 import { ForecastItem as ForecastWeatherData } from '../../../../../../models/weather-models';
 import { TemperaturePipe } from '../../../../../../pipes/temperature-pipe';
@@ -15,6 +16,7 @@ import { ForecastItem } from '../../models/forecast-item';
         TemperaturePipe,
         WeatherIcon,
         Skeleton,
+        TranslatePipe,
     ],
 })
 export class ForecastDay {

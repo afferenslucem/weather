@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, DestroyRef, inject, Input, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
 import { WeatherClient } from '../../../../clients/weather.client';
 import { Skeleton } from '../../../../directives/skeleton';
 import { CurrentWeatherData } from '../../../../models/weather-models';
@@ -15,6 +16,7 @@ import { WeatherIcon } from '../../../../shared/weather-icon/weather-icon.compon
         WeatherIcon,
         TemperaturePipe,
         Skeleton,
+        TranslatePipe,
     ],
     templateUrl: './current-weather.html',
     styleUrl: './current-weather.scss',

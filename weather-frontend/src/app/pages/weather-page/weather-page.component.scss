@@ -10,6 +10,10 @@
 }
 
 .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   background-color: #9B4D96;
 
   position: absolute;

@@ -1,5 +1,6 @@
 import { Component, DestroyRef, inject, Input, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
 import _ from 'declarray';
 import { map, Observable } from 'rxjs';
 import { WeatherClient } from '../../../../clients/weather.client';
@@ -13,6 +14,7 @@ import { ForecastItem } from './models/forecast-item';
     styleUrl: './forecast.scss',
     imports: [
         ForecastDay,
+        TranslatePipe,
 
     ],
 })

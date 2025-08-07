@@ -1,5 +1,6 @@
 <div class="week-day" skeleton type="text" [show]="!day">
-    {{ day?.forecastTime | date: 'dd ccc' }}
+    {{ day?.forecastTime | date: 'dd' }}
+    {{ day?.forecastTime | date: 'ccc' | translate }}
 </div>
 
 <weather-icon skeleton [show]="!iconCode" [code]="iconCode" />

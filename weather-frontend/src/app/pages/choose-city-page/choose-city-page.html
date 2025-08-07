@@ -6,7 +6,7 @@
     @for (city of cities(); track city.id) {
         <li>
             <button appButton class="city-option" [routerLink]="['/', city.id]">
-                {{ city.name }}
+                {{ city.name | translate }}
             </button>
         </li>
     }

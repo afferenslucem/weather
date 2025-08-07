@@ -1,0 +1,28 @@
+{
+  "Feels like": "Ощущается как",
+  "Humidity": "Влажность",
+  "Pressure": "Давление",
+  "Wind": "Ветер",
+
+  "hPa": "кПа",
+  "m/s": "м/c",
+
+  "Forecast": "Прогноз",
+
+  "Change city": "Выбрать город",
+
+  "Mon": "Пн",
+  "Tue": "Вт",
+  "Wed": "Ср",
+  "Thu": "Чт",
+  "Fri": "Пт",
+  "Sat": "Сб",
+  "Sun": "Вс",
+
+  "Chelyabinsk": "Челябинск",
+  "Kazan": "Казань",
+  "Kazan’": "Казань",
+  "Moscow": "Москва",
+  "Novosibirsk": "Новосибирск",
+  "Saint Petersburg": "Санкт-Петербург"
+}

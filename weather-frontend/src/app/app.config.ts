@@ -2,6 +2,8 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { routes } from './app.routes';
 import { baseUrlInterceptor } from './interceptors/base-url-interceptor';
@@ -22,5 +24,14 @@ export const appConfig: ApplicationConfig = {
           ),
           withFetch(),
       ),
+      provideTranslateService({
+          loader: provideTranslateHttpLoader({
+              prefix: '/i18n/',
+              suffix: '.json',
+              useHttpBackend: true
+          }),
+          fallbackLang: 'en',
+          lang: 'ru'
+      })
   ]
 };
