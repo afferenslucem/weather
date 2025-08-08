@@ -1,8 +1,11 @@
-<app-current-weather [cityId]="cityId"/>
+<div class="body">
+    <app-current-weather [cityId]="cityId"/>
 
-<app-forecast [cityId]="cityId" />
+    <app-forecast [cityId]="cityId" />
+</div>
 
 <div class="footer">
     <app-change-city />
+
     <app-change-locale/>
 </div>

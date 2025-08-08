@@ -5,8 +5,14 @@
   inline-size: 100%;
 
   padding-block-start: 2rem;
+}
 
-  padding-block-end: 3rem;
+$footer-height: 3.5rem;
+
+.body {
+  block-size: calc(100% - $footer-height);
+
+  overflow-y: auto;
 }
 
 .footer {
@@ -14,14 +20,10 @@
   align-items: center;
   justify-content: space-between;
 
+  block-size: $footer-height;
+  inline-size: 100%;
+
   background-color: #9B4D96;
-
-  position: absolute;
-
-  inset-inline: 0;
-
-  inset-block-end: 0;
-  inset-inline-start: 0;
 }
 
 app-forecast {

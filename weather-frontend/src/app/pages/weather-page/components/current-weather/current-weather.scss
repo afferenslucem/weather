@@ -23,6 +23,8 @@
   align-items: center;
   gap: 0.75rem;
 
+  block-size: 1.5rem;
+
   .header {
     display: flex;
     align-items: center;
@@ -43,6 +45,7 @@
   }
 
   &--main {
+    block-size: unset;
 
     justify-content: space-between;
 
