@@ -1,13 +1,15 @@
-<h1 class="heading">
-    Выберете город
-</h1>
+<div class="content-box">
+    <h1 class="heading">
+        {{ 'Choose city' | translate }}
+    </h1>
 
-<ul class="city-list">
-    @for (city of cities(); track city.id) {
-        <li>
-            <button appButton class="city-option" [routerLink]="['/', city.id]">
-                {{ city.name | translate }}
-            </button>
-        </li>
-    }
-</ul>
+    <ul class="city-list">
+        @for (city of cities(); track city.id) {
+            <li>
+                <button appButton class="city-option" [routerLink]="['/', city.id]">
+                    {{ city.name | translate }}
+                </button>
+            </li>
+        }
+    </ul>
+</div>

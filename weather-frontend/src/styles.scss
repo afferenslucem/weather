@@ -2,6 +2,10 @@
 
 @import "styles/typography";
 
+:root {
+  --desktop-treshold: 500px
+}
+
 * {
   box-sizing: border-box;
 }
