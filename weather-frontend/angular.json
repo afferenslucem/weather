@@ -22,8 +22,6 @@
               "reflect-metadata"
             ],
             "browser": "src/main.ts",
-            "baseHref": "/",
-            "deployUrl": "/",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [

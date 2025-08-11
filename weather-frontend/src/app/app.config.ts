@@ -38,7 +38,8 @@ export const appConfig: ApplicationConfig = {
           }),
           fallbackLang: 'en',
           lang: 'ru'
-      }), provideServiceWorker('ngsw-worker.js', {
+      }),
+      provideServiceWorker('ngsw-worker.js', {
           enabled: !isDevMode(),
           registrationStrategy: 'registerWhenStable:30000',
       }),
