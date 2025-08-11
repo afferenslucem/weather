@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:weather-frontend": "node dist/weather-frontend/server/server.mjs"
+    "serve:ssr": "node dist/weather-frontend/server/server.mjs"
   },
   "prettier": {
     "overrides": [

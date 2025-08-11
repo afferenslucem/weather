@@ -10,6 +10,7 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { environment } from '../environments/environment';
 
 import { routes } from './app.routes';
 import { baseUrlInterceptor } from './interceptors/base-url-interceptor';
@@ -40,7 +41,7 @@ export const appConfig: ApplicationConfig = {
           lang: 'ru'
       }),
       provideServiceWorker('ngsw-worker.js', {
-          enabled: !isDevMode(),
+          enabled: environment.production,
           registrationStrategy: 'registerWhenStable:30000',
       }),
   ]
