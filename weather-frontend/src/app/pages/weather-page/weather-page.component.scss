@@ -30,7 +30,7 @@ app-forecast {
   margin-block-start: 2.5rem;
 }
 
-@media (min-width: 500px) {
+@media (width >= 500px) {
   .body {
     display: flex;
 

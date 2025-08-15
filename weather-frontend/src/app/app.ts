@@ -32,7 +32,7 @@ export class App implements OnInit {
     const chosenCity = this.localStorage.getCityId();
 
     if (chosenCity) {
-      this.router.navigate([chosenCity])
+      this.router.navigate(['/', 'weather', chosenCity])
     } else {
       this.router.navigate(['choose-city'])
     }

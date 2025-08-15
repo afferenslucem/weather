@@ -55,7 +55,7 @@
   font-size: 1.75rem;
 }
 
-@media (min-width: 500px) {
+@media (width >= 500px) {
   :host {
     display: flex;
     align-items: center;
