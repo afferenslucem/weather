@@ -4,17 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var configuration = new ConfigurationBuilder()
-    .SetBasePath(Environment.CurrentDirectory)
-    .AddJsonFile("appsettings.json")
-    .Build();
-
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.Configure<Config>(configuration.GetSection("Config"));
+builder.Services.Configure<Config>(builder.Configuration.GetSection("Config"));
 
 builder.Services.AddScoped<IWeatherService, WeatherService>();
 builder.Services.AddScoped<ICityService, CityService>();
@@ -22,7 +17,7 @@ builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddDbContext<WeatherContext>(options =>
     {
         options
-            .UseNpgsql(configuration.GetConnectionString("DbConnectionString"));
+            .UseNpgsql(builder.Configuration.GetConnectionString("DbConnectionString"));
     }
 );
 
@@ -49,5 +44,15 @@ app.UseRouting();
 app.UseCors("default");
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    using var context = services.GetService<WeatherContext>();
+    Console.WriteLine($"Context is found: {context?.Database != null}");
+    
+    context?.Database.Migrate();
+    Console.WriteLine($"Database Migrated: {context?.Database != null}");
+}
 
 app.Run();

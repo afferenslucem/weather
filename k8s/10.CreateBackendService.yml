@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - name: backend
+      port: 80       # порт, по которому сервис доступен внутри кластера
+      targetPort: 8080 # порт внутри контейнера
+  type: ClusterIP      # Доступ только внутри кластера (обычный вариант)

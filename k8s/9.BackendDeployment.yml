@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-backend
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:    
+      app: backend
+  
+  strategy:
+   type: Recreate
+
+  template:
+    metadata:
+      name: backend
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: weather-backend:0.7
+        ports:
+        - containerPort: 8080
+        env:
+        - name: Config__APIKey
+          valueFrom:
+            secretKeyRef:
+              name: backendsecret
+              key: OWApiKey
+        - name: ConnectionStrings__DbConnectionString
+          valueFrom:
+            secretKeyRef:
+              name: backendsecret
+              key: ConnectionString
+
+      initContainers:
+      - name: wait-db
+        image: postgres:17-bullseye
+        command: ['sh', '-c', "until pg_isready -h postgres-service -U postgres; do echo waiting for myservice; sleep 2; done"]
+  
