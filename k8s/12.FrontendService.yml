@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - name: frontend
+      port: 80       # порт, по которому сервис доступен внутри кластера
+      targetPort: 4000 # порт внутри контейнера
+  type: ClusterIP      # Доступ только внутри кластера (обычный вариант)
