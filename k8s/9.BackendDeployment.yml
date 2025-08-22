@@ -18,9 +18,17 @@ spec:
       labels:
         app: backend
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      initContainers:
+      - name: volume-permissions
+        image: busybox
+        command: ["sh", "-c", "chown -R 1000:1000 /dbdata && chmod 770 /dbdata || true"]
       containers:
       - name: backend
-        image: weather-backend:0.7
+        image: weather-backend:0.8
         ports:
         - containerPort: 8080
         env:
@@ -34,9 +42,10 @@ spec:
             secretKeyRef:
               name: backendsecret
               key: ConnectionString
-
-      initContainers:
-      - name: wait-db
-        image: postgres:17-bullseye
-        command: ['sh', '-c', "until pg_isready -h postgres-service -U postgres; do echo waiting for myservice; sleep 2; done"]
-  
+        volumeMounts:
+        - name: dbdata
+          mountPath: /dbdata
+      volumes:
+        - name: dbdata
+          persistentVolumeClaim:
+            claimName: db-weather

@@ -6,9 +6,10 @@ namespace WeatherBackend;
 public class WeatherContext : DbContext
 {
     public DbSet<SupportedCity> Cities { get; set; }
-    
+
     public WeatherContext(DbContextOptions<WeatherContext> options)
-        : base(options) {}
+        : base(options)
+    {}
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

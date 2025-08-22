@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: create-db-script
-data:
-  create_db.sql: |
-    create user weather with password 'masterkey';
-    create database weather with owner weather;

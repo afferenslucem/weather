@@ -1,15 +1,16 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: postgres-weather
+  name: db-weather
   labels:
     type: local
-    app: postgres
+    app: db
 spec:
   storageClassName: manual
   capacity: 
-    storage: 5Gi
+    storage: 128Mi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: "/mnt/kube-data"
+    path: "/mnt/kube-data/weather"

@@ -17,7 +17,7 @@ builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddDbContext<WeatherContext>(options =>
     {
         options
-            .UseNpgsql(builder.Configuration.GetConnectionString("DbConnectionString"));
+            .UseSqlite(builder.Configuration.GetConnectionString("DbConnectionString"));
     }
 );
 
@@ -51,7 +51,7 @@ using (var scope = app.Services.CreateScope())
     using var context = services.GetService<WeatherContext>();
     Console.WriteLine($"Context is found: {context?.Database != null}");
     
-    context?.Database.Migrate();
+    context?.Database.EnsureCreated();
     Console.WriteLine($"Database Migrated: {context?.Database != null}");
 }
 

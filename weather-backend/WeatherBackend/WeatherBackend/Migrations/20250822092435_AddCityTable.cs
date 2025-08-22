@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -15,12 +14,12 @@ namespace WeatherBackend.Migrations
                 name: "Cities",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    CountryCode = table.Column<string>(type: "text", nullable: false),
-                    Longitude = table.Column<double>(type: "double precision", nullable: false),
-                    Latitude = table.Column<double>(type: "double precision", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    CountryCode = table.Column<string>(type: "TEXT", nullable: false),
+                    Longitude = table.Column<double>(type: "REAL", nullable: false),
+                    Latitude = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {

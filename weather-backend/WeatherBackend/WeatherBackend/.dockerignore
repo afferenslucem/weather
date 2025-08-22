@@ -1,0 +1,5 @@
+*.db
+*.http
+bin/
+obj/
+Dockerfile
