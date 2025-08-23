@@ -1,3 +1,4 @@
 .idea/
 init-database.sh
 k8s/weather
+weather-backend/WeatherBackend/WeatherBackend.sln.DotSettings.user
