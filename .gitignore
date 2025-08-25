@@ -2,3 +2,5 @@
 init-database.sh
 k8s/weather
 weather-backend/WeatherBackend/WeatherBackend.sln.DotSettings.user
+k8s/3.BackendSecret.yml
+weather-backend/WeatherBackend/WeatherBackend/Weather.db
