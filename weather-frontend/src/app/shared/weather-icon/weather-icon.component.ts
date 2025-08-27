@@ -20,6 +20,15 @@ export class WeatherIcon {
         ['11d']: 'storm',
         ['13d']: 'snowfall',
         ['50d']: 'cloudy',
+        ['01n']: 'moon',
+        ['02n']: 'cloudy-night',
+        ['03n']: 'cloudy',
+        ['04n']: 'extra-cloudy',
+        ['09n']: 'rainfall',
+        ['10n']: 'rainfall',
+        ['11n']: 'storm',
+        ['13n']: 'snowfall',
+        ['50n']: 'cloudy',
     };
 
     public code = input.required<string>();
