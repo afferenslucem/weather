@@ -1,0 +1,62 @@
+@startuml Domain Model Diagram
+title Simple Weather
+
+package "Weather Context" {
+    class WeatherData <<ValueObject>> {
+        +temperature: float
+        +humidity: float
+        ...
+    }
+}
+
+note left of "Weather Context"
+    Does not have business logic.\n
+    Knly fetches data from external API
+end note
+
+package "OpenWeatherApi\n(External)" {
+    class WeatherData <<ValueObject>> {
+        +temperature: float
+        +humidity: float
+        ...
+    }
+}
+
+note left of "OpenWeatherApi\n(External)"
+    External API for data fetching
+end note
+
+package "City Context" {
+    class City {
+        +id: int
+        +name: string
+        +country: string
+        +coord: Coordinates
+    }
+
+    class Coordinates <<ValueObject>> {
+        +latitude: float
+        +longitude: float
+    }
+
+    City o-- Coordinates
+}
+
+package "Auth Context" {
+    class User {
+        +id: int
+        +login: string
+        ~saltedHash: string
+        +role: string
+    }
+
+    note bottom of "User"
+        All users have role "Admin"
+    end note
+}
+
+"Weather Context" -> "City Context"
+"Weather Context" -> "OpenWeatherApi\n(External)"
+"City Context" -> "Auth Context"
+
+@enduml
