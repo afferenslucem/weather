@@ -1,0 +1,69 @@
+@startuml Context Map
+
+title Furniture Store - Context Map (DDD)
+
+skinparam packageStyle rectangle
+skinparam rectangle {
+    BackgroundColor<<Context>> #E3F2FD
+    BorderColor<<Context>> #1565C0
+    FontColor #0D47A1
+}
+skinparam rectangle {
+    BackgroundColor<<External>> #FFEBEE
+    BorderColor<<External>> #C62828
+}
+
+rectangle "Weather Context\n(Core Domain)" <<Context>> {
+}
+note top of "Weather Context\n(Core Domain)"
+    Responsible for requesting weather data data:
+    - Temperature
+    - Humidity
+    - Etc.
+
+    Implements ACL to translate external model to internal.
+end note
+
+rectangle "City Context\n(Support Domain)" <<Context>> {
+
+}
+
+ note bottom of "City Context\n(Support Domain)"
+    Manages the city list
+end note
+
+rectangle "Auth Context\n(Generic Domain)" <<Context>> {
+}
+note bottom of "Auth Context\n(Generic Domain)"
+    Handles:
+    - Adding user requests
+    - Authentication requests
+end note
+
+rectangle "Client Application" <<Context>> {
+}
+note left of "Client Application"
+    Consumes:
+        - Auth API
+        - City API
+        - Weather API
+end note
+
+
+rectangle "OpenWeatherAPI Context" <<External>> {
+
+}
+
+note bottom of "OpenWeatherAPI Context"
+    Third-party data provider
+end note
+
+"Weather Context\n(Core Domain)" --> "OpenWeatherAPI Context" : Conformist (JSON:API)
+"Weather Context\n(Core Domain)" --> "City Context\n(Support Domain)" : Customer–Supplier\nPublished Language)
+"City Context\n(Support Domain)" --> "Auth Context\n(Generic Domain)" : Customer–Supplier\n(Auth = Upstream)
+
+"Client Application" --> "Auth Context\n(Generic Domain)" : REST (JWT request)
+"Client Application" --> "City Context\n(Support Domain)" : REST (CRUD cities)
+"Client Application" --> "Weather Context\n(Core Domain)" : REST (Fetch weather)
+
+@enduml
